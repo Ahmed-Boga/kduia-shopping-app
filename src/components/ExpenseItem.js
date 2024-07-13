@@ -1,8 +1,17 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
-import { FaTimesCircle } from 'react-icons/fa';
 
-const ExpenseItem = (props) => {
+const CartValue = () => {
+    const { expenses, Location } = useContext(AppContext);
+    const totalExpenses = expenses.reduce((total, item) => {
+        return (total += (item.unitprice * item.quantity));
+    }, 0);
+
+    return (
+        <div className='alert alert-primary'>
+            <span>Cart Value: {Location}{totalExpenses}</span>
+        </div>
+    );
 };
 
-export default ExpenseItem;
+export default CartValue;
